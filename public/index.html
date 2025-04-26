@@ -118,6 +118,8 @@ overflow-y: hidden;
             border-color: none;
         }
 
+
+  
         .toggle-group {
             display: flex;
             align-items: center;
@@ -143,7 +145,7 @@ overflow-y: hidden;
             border-radius: 10px;
             position: relative;
             margin-right: 0.5rem;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s ease;
         }
 
         .toggle-switch::before {
@@ -155,15 +157,18 @@ overflow-y: hidden;
             position: absolute;
             top: 2px;
             left: 2px;
-            transition: transform 0.3s;
+            transition: transform 0.3s ease;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
         }
 
-        input:checked + .toggle-switch {
+        /* Fix: Target the toggle-switch inside the label when the input is checked */
+        .toggle-group input:checked ~ label .toggle-switch {
             background-color: #1a3c5e;
         }
 
-        input:checked + .toggle-switch::before {
+        .toggle-group input:checked ~ label .toggle-switch::before {
             transform: translateX(20px);
+            background-color: rgb(242,242,242);
         }
 
         .captcha-group {
@@ -324,7 +329,7 @@ overflow-y: hidden;
                 <input type="password" required id="password" name="password" required>
                 <button type="button" class="show-password" id="togglePasscode" onclick="togglePassword()"><img src="public/view.png" alt="show icon"/></button>
             </div>
-            <div class="toggle-group">
+            <div class="toggle-group" >
                 <input type="checkbox" id="remember" name="remember">
                 <label for="remember">
                     <span class="toggle-switch"></span>
@@ -360,9 +365,9 @@ overflow-y: hidden;
                      Routing number: 211384926</p>
         </div>
         <div class="footer-logos">
-            <img src="public/ncua.png" alt="NCUA Logo">
-            <img src="public/housing.png" alt="MSIC Logo">
-            <img src="public/msic-logo.png" alt="MSIC Logo">
+            <img src="/ncua.png" alt="NCUA Logo">
+            <img src="/housing.png" alt="MSIC Logo">
+            <img src="/msic-logo.png" alt="MSIC Logo">
            
         </div>
     </footer>
